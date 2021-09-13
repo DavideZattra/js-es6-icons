@@ -115,11 +115,25 @@ const icons =  [
 
 const colors = [ 'magenta', 'lime', 'lightskyblue'];
 
-//   Milestone 1
-//   Partendo dalla seguente struttura dati , mostriamo in pagina tutte le icone disponibili come da layout.
+const iconContainer = document.getElementById('ms_icons-container');
+const types = getProperty(icons, 'type');
+const select = document.getElementById('ms_select');
 
 colorItems(icons, colors);
-const iconContainer = document.getElementById('ms_icons-container');
+printToHTML(icons, iconContainer);
+addOptions(types, select);
+
+select.addEventListener('change',()=>{
+    const selectedValue = select.value;
+    
+    const filteredIcons = filteredItems(icons, selectedValue);
+    
+    printToHTML(filteredIcons,iconContainer)
+});
+
+
+//   Milestone 1
+//   Partendo dalla seguente struttura dati , mostriamo in pagina tutte le icone disponibili come da layout.
 
 function printToHTML(array, container){
 
@@ -140,7 +154,6 @@ function printToHTML(array, container){
 
 };
 
-printToHTML(icons, iconContainer);
 
 /** 
  *  Milestone 2
@@ -168,7 +181,6 @@ function getProperty(array, property){
 
 function colorItems(array, colors){
     const types = getProperty(array, 'type');
-    console.log(types);
 
     const colorizedArray = array.map((element) => {
 
@@ -189,5 +201,24 @@ function colorItems(array, colors){
  * 
  *  Milestone 3
  *  Creiamo una select con i tipi di icone e usiamola per filtrare le icone
+ *  [onChange]
  * 
  */
+
+function addOptions(options, select){
+    options.forEach((element) => {
+        select.innerHTML += `<option value="${element}">${element}</option>`
+    })
+}
+
+function filteredItems(array, filter){
+
+    if (filter.trim().toLowerCase() === 'all'){
+        return array
+    }
+
+    return array.filter((element) => element.type == filter);
+    
+
+    
+}
