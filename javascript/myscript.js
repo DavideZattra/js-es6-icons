@@ -94,28 +94,31 @@ const icons =  [
 		family: 'fas'
 	},
 	{
-		name: 'user-graduate',
+        name: 'user-graduate',
 		prefix: 'fa-',
 		type: 'user',
 		family: 'fas'
 	},
 	{
-		name: 'user-ninja',
+        name: 'user-ninja',
 		prefix: 'fa-',
 		type: 'user',
 		family: 'fas'
 	},
 	{
-		name: 'user-secret',
+        name: 'user-secret',
 		prefix: 'fa-',
 		type: 'user',
 		family: 'fas'
 	}
 ];
 
+const colors = [ 'magenta', 'lime', 'lightskyblue'];
+
 //   Milestone 1
 //   Partendo dalla seguente struttura dati , mostriamo in pagina tutte le icone disponibili come da layout.
 
+colorItems(icons, colors);
 const iconContainer = document.getElementById('ms_icons-container');
 
 function printToHTML(array, container){
@@ -124,12 +127,12 @@ function printToHTML(array, container){
 
     array.forEach((element) => {
     
-        const {name, prefix, type, family} = element;
+        const {name, prefix, type, family, color} = element;
         
         container.innerHTML += 
         `
         <div>
-            <h1><i class='${family} ${prefix}${name}'></i></h1>
+            <h1><i class='${family} ${prefix}${name}' style='color : ${color}'></i></h1>
             <h4>${name}</h4>
         </div>
         `
@@ -144,3 +147,47 @@ printToHTML(icons, iconContainer);
  *  Coloriamo le icone per tipo
  */
 
+
+/**
+ * 
+ */
+function getProperty(array, property){
+
+    const properties = [];
+    array.forEach((element) => {
+        if (!properties.includes(element[property])){
+            properties.push(element[property]);
+        }
+    });
+
+    return properties;
+
+};
+
+
+
+function colorItems(array, colors){
+    const types = getProperty(array, 'type');
+    console.log(types);
+
+    const colorizedArray = array.map((element) => {
+
+        const indexOfType = types.indexOf(element.type);
+
+        if ( indexOfType !== -1 ){
+
+            element.color = colors[indexOfType];
+
+        }
+        return element;
+    })
+
+    return colorizedArray;
+}
+
+/**
+ * 
+ *  Milestone 3
+ *  Creiamo una select con i tipi di icone e usiamola per filtrare le icone
+ * 
+ */
