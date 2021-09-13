@@ -112,3 +112,35 @@ const icons =  [
 		family: 'fas'
 	}
 ];
+
+//   Milestone 1
+//   Partendo dalla seguente struttura dati , mostriamo in pagina tutte le icone disponibili come da layout.
+
+const iconContainer = document.getElementById('ms_icons-container');
+
+function printToHTML(array, container){
+
+    container.innerHTML = '';
+
+    array.forEach((element) => {
+    
+        const {name, prefix, type, family} = element;
+        
+        container.innerHTML += 
+        `
+        <div>
+            <h1><i class='${family} ${prefix}${name}'></i></h1>
+            <h4>${name}</h4>
+        </div>
+        `
+    });
+
+};
+
+printToHTML(icons, iconContainer);
+
+/** 
+ *  Milestone 2
+ *  Coloriamo le icone per tipo
+ */
+
