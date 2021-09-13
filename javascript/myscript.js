@@ -113,7 +113,7 @@ const icons =  [
 	}
 ];
 
-const colors = [ 'magenta', 'lime', 'lightskyblue'];
+const colors = [ '#0000ff', '#ffa500', '#800080'];
 
 const iconContainer = document.getElementById('ms_icons-container');
 const types = getProperty(icons, 'type');
@@ -145,7 +145,7 @@ function printToHTML(array, container){
         
         container.innerHTML += 
         `
-        <div>
+        <div class="col-2 text-center ">
             <h1><i class='${family} ${prefix}${name}' style='color : ${color}'></i></h1>
             <h4>${name}</h4>
         </div>

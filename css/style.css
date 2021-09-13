@@ -1,0 +1,19 @@
+header h1{
+    color: #29b1dd;
+}
+
+#ms_selector-row{
+    background-color: #29b1dd;
+}
+
+#ms_icons-container{
+    background-color: #dddddd;
+    
+}
+#ms_icons-container>div{
+    
+    background-color: white;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 20px 10px;
+}
